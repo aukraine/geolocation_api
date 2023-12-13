@@ -12,6 +12,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: geolocation_db
+      IPSTACK_API_ACCESS_KEY: f91088e11ab0cef7179d7d02c63a63aa # TODO: use more secured approach instead
 
   db:
     image: postgres

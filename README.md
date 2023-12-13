@@ -31,7 +31,7 @@ Ruby API - Geolocation with external integration
 
 **2. Select the Technology Stack:**
 > - choose the programming language and framework.
-    >   - RoR, PostgreSQL, Docker-Compose, JWT, Pundit, DRY-validation, Alba, Swagger, RSpec, FactoryBot
+>   - RoR, PostgreSQL, Docker-Compose, JWT, Pundit, DRY-validation, Alba, Faraday, Swagger, RSpec, FactoryBot
 
 **3. Design DB & implement Models:**
 
@@ -55,6 +55,9 @@ Ruby API - Geolocation with external integration
 [//]: # (> - use JSON API standard for request payloads and response bodies)
 
 **5. Integration with IPstack 3rd party service:**
+> - created simple class to call `IPstack` 3rd party service using `Faraday` gem
+
+[//]: # (> - potentially rewrite that class to servie object)
 
 **6. Authentication and Authorization:**
 
@@ -92,3 +95,4 @@ Ruby API - Geolocation with external integration
 > - **Logging**: Implement logging to track API requests and responses for debugging purposes.
 > - **Rate Limiting**: Consider implementing rate limiting to prevent abuse.
 > - **Caching**: Implement caching for repeated requests to improve performance.
+> - use secrets to manage important environment variables
