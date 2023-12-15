@@ -26,16 +26,23 @@ Ruby API - Geolocation with external integration
 ## Steps of implementation and developer notes
 
 **1. Understand the Requirements:**
-> - carefully read and understand the problem definition.
-> - identify the core functionalities the API should provide: managing doctor availabilities, patient booking/editing appointments, and viewing availability.
+> - carefully read and understood the problem definition.
+> - identified the core functionalities the API should provide: managing doctor availabilities, patient booking/editing appointments, and viewing availability.
 
 **2. Select the Technology Stack:**
-> - choose the programming language and framework.
+> - chose the programming language and framework.
 >   - RoR, PostgreSQL, Docker-Compose, JWT, Pundit, DRY-validation, Alba, Faraday, Swagger, RSpec, FactoryBot
 
 **3. Design DB & implement Models:**
 
-[//]: # (> - determine the data models required for this system.)
+> - determined the data models required for this system.
+> - created `Geolocation` model with:
+>   - required `ip` string attribute
+>   - optional `url` string attribute
+>   - string `type` attribute
+>   - float `latitude` and `longitude` attributes
+>   - jsonb `location` attribute with all additional data received from 3rd party service
+
 [//]: # (> - implement main model for storing geospatial data using `postgis` gem)
 [//]: # (> - design and use `Service Object` to encapsulate and manage business logic in separate abstraction)
 [//]: # (>   - service objects represent a single system action such as adding a record to the database or sending an email)
@@ -55,7 +62,9 @@ Ruby API - Geolocation with external integration
 [//]: # (> - use JSON API standard for request payloads and response bodies)
 
 **5. Integration with IPstack 3rd party service:**
-> - created simple class to call `IPstack` 3rd party service using `Faraday` gem
+> - created simple class to call `IPstack` 3rd party service using `Faraday` gem.
+
+[//]: # (> - create separate service to handle errors and transfor response)
 
 [//]: # (> - potentially rewrite that class to servie object)
 
@@ -89,10 +98,10 @@ Ruby API - Geolocation with external integration
 [//]: # (> - use `simplecov` gem to check amount of covered code with tests)
 
 **10. Deployment:**
-> - build API application inside of docker container and use `Docker Compose` tool manage it with DB in separate one
+> - built API application inside of docker container and use `Docker Compose` tool manage it with DB in separate one.
 
 **11. Future Improvements:**
 > - **Logging**: Implement logging to track API requests and responses for debugging purposes.
 > - **Rate Limiting**: Consider implementing rate limiting to prevent abuse.
 > - **Caching**: Implement caching for repeated requests to improve performance.
-> - use secrets to manage important environment variables
+> - use secrets to manage important environment variables.
