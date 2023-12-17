@@ -36,12 +36,14 @@ Ruby API - Geolocation with external integration
 **3. Design DB & implement Models:**
 > - determined the data models required for this system.
 > - created `Geolocation` model with:
->   - required `ip` string attribute
->   - optional `url` string attribute
->   - string `type` attribute
->   - float `latitude` and `longitude` attributes
->   - jsonb `location` attribute with all additional data received from 3rd party service
-> - added default Rails validation on model layer via creating own validators
+>   - required `ip` string attribute;
+>   - optional `url` string attribute;
+>   - string `type` attribute;
+>   - float `latitude` and `longitude` attributes;
+>   - jsonb `location` attribute with all additional data received from 3rd party service.
+> - perhaps, create separate related table to store `location` JSON data there, TBD...
+> - created two **indexes** for `ip` and `url` (for second one only for cases when value is present) columns.
+> - added default Rails validation on model layer via creating own validators.
 
 [//]: # (> - implement main model for storing geospatial data using `postgis` gem)
 [//]: # (> - design and use `Service Object` to encapsulate and manage business logic in separate abstraction)
@@ -75,7 +77,7 @@ Ruby API - Geolocation with external integration
 [//]: # (> - use `Pundit` gem to authorise users permissions)
 
 **7. Validation and Error Handling:**
-> - added default Rails validation on model layer via creating own validators
+> - added default Rails validation on model layer via creating own validators.
 
 [//]: # (> - add validation for incoming data to prevent invalid bookings or data corruption.)
 [//]: # (>   - use `Dry-validation` gem)
@@ -105,3 +107,5 @@ Ruby API - Geolocation with external integration
 > - **Rate Limiting**: Consider implementing rate limiting to prevent abuse.
 > - **Caching**: Implement caching for repeated requests to improve performance.
 > - use secrets to manage important environment variables.
+> - perhaps, create separate table to store `location` JSON data there and add one-to-one relation to `geolocation` table...
+> - add background job to fetch and store data about IP or URL not existing in DB in new `geolocation` record.

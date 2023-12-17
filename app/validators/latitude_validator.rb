@@ -1,5 +1,5 @@
 class LatitudeValidator < ActiveModel::Validator
-  LAT_LIMIT_DEGREES = 180
+  LAT_LIMIT_DEGREES = 90
 
   def validate(record)
     unless (-LAT_LIMIT_DEGREES..LAT_LIMIT_DEGREES).include?(record.latitude)

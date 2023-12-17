@@ -20,4 +20,12 @@
 require 'rails_helper'
 
 RSpec.describe Geolocation, type: :model do
+  describe 'validations' do
+    before { create(:geolocation) }
+
+    it { is_expected.to validate_presence_of(:ip) }
+    it { is_expected.to validate_presence_of(:type) }
+    it { is_expected.to validate_presence_of(:latitude) }
+    it { is_expected.to validate_presence_of(:longitude) }
+  end
 end
