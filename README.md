@@ -55,12 +55,13 @@ Ruby API - Geolocation with external integration
 
 **4. API Endpoints:**
 
-[//]: # (> - define the API endpoints based on the requirements.)
-[//]: # (> - ensure that the API follows RESTful principles &#40;HTTP methods like GET, POST, PUT, DELETE, status codes, etc.&#41;.)
-[//]: # (> - create CRUD endpoints for ability to manage available slot in doctors schedule)
+> - defined the API endpoints based on the requirements.
+> - ensured that the API follows RESTful principles (HTTP methods like GET, POST, PUT, DELETE, status codes, etc.).
+> - create couple of CRUD endpoints for ability to manage geolocations records.
+> - it's first version `V1` of API, so we added `/v1` into path and moved controllers into `V1` module according to the best practices of API design and implementation.
+
 [//]: # (> - use `Alba` gem for serialization)
 [//]: # (>   - potentially we can convert all keys to `lowerCamelCase` adding one command in base serializer)
-[//]: # (> - it is first version of `V1` API, so we have to consider add `/v1` into path and move controllers into `V1` module according to the best practices of API design and implementation)
 [//]: # (> - use JSON API standard for request payloads and response bodies)
 
 **5. Integration with IPstack 3rd party service:**
