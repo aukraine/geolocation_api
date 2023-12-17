@@ -12,6 +12,11 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
+# Indexes
+#
+#  index_geolocations_on_ip   (ip)
+#  index_geolocations_on_url  (url) WHERE (url IS NOT NULL)
+#
 
 one:
   ip: MyString

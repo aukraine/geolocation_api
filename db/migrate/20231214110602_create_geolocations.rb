@@ -10,5 +10,8 @@ class CreateGeolocations < ActiveRecord::Migration[7.1]
 
       t.timestamps
     end
+
+    add_index :geolocations, :ip
+    add_index :geolocations, :url, where: 'url IS NOT NULL'
   end
 end

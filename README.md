@@ -34,7 +34,6 @@ Ruby API - Geolocation with external integration
 >   - RoR, PostgreSQL, Docker-Compose, JWT, Pundit, DRY-validation, Alba, Faraday, Swagger, RSpec, FactoryBot
 
 **3. Design DB & implement Models:**
-
 > - determined the data models required for this system.
 > - created `Geolocation` model with:
 >   - required `ip` string attribute
@@ -42,6 +41,7 @@ Ruby API - Geolocation with external integration
 >   - string `type` attribute
 >   - float `latitude` and `longitude` attributes
 >   - jsonb `location` attribute with all additional data received from 3rd party service
+> - added default Rails validation on model layer via creating own validators
 
 [//]: # (> - implement main model for storing geospatial data using `postgis` gem)
 [//]: # (> - design and use `Service Object` to encapsulate and manage business logic in separate abstraction)
@@ -65,7 +65,6 @@ Ruby API - Geolocation with external integration
 > - created simple class to call `IPstack` 3rd party service using `Faraday` gem.
 
 [//]: # (> - create separate service to handle errors and transfor response)
-
 [//]: # (> - potentially rewrite that class to servie object)
 
 **6. Authentication and Authorization:**
@@ -76,6 +75,7 @@ Ruby API - Geolocation with external integration
 [//]: # (> - use `Pundit` gem to authorise users permissions)
 
 **7. Validation and Error Handling:**
+> - added default Rails validation on model layer via creating own validators
 
 [//]: # (> - add validation for incoming data to prevent invalid bookings or data corruption.)
 [//]: # (>   - use `Dry-validation` gem)

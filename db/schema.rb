@@ -23,6 +23,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_14_110602) do
     t.jsonb "location", default: {}, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["ip"], name: "index_geolocations_on_ip"
+    t.index ["url"], name: "index_geolocations_on_url", where: "(url IS NOT NULL)"
   end
 
 end
