@@ -44,6 +44,7 @@ Ruby API - Geolocation with external integration
 > - perhaps, create separate related table to store `location` JSON data there, TBD...
 > - created two **indexes** for `ip` and `url` (for second one only for cases when value is present) columns.
 > - added default Rails validation on model layer via creating own validators.
+> - created simple `User` model to be able use and show `Pundit` authorization.
 
 [//]: # (> - implement main model for storing geospatial data using `postgis` gem)
 [//]: # (> - design and use `Service Object` to encapsulate and manage business logic in separate abstraction)
