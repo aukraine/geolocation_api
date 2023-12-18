@@ -34,7 +34,7 @@ FactoryBot.define do
     end
 
     trait :with_url do
-      url { Faker::Internet.url }
+      url { Faker::Internet.domain_name(subdomain: true) }
     end
 
     trait :with_jsonb_location do

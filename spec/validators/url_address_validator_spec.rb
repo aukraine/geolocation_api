@@ -8,11 +8,23 @@ RSpec.describe UrlAddressValidator, type: :validator do
   describe '#validate' do
     context 'when value is valid' do
       context 'when value is present' do
-        let(:url) { Faker::Internet.url }
+        context 'when value is URL address' do
+          let(:url) { Faker::Internet.url }
 
-        it 'does not add any errors', :aggregate_failures do
-          expect(record).to be_valid
-          expect(record.errors).to be_empty
+          it 'does not add any errors', :aggregate_failures do
+            expect(record).to be_valid
+            expect(record.errors).to be_empty
+          end
+        end
+
+
+        context 'when value is domain address' do
+          let(:url) { Faker::Internet.domain_name(subdomain: true) }
+
+          it 'does not add any errors', :aggregate_failures do
+            expect(record).to be_valid
+            expect(record.errors).to be_empty
+          end
         end
       end
 

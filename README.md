@@ -61,6 +61,9 @@ Ruby API - Geolocation with external integration
 > - create couple of CRUD endpoints for ability to manage geolocations records.
 > - it's first version `V1` of API, so we added `/v1` into path and moved controllers into `V1` module according to the best practices of API design and implementation.
 > - used `:target` params as default instead `:id` on **show** and **destroy** endpoints.
+>   - moreover, allowed `target` value to contain IP addresses, domains and even URLs with prefixes via set up the constraints,
+>   - note that integrated `IPstack` service works only with domain addresses in path, so ability to receive, validate and store whole URL addresses will be useful in the future,
+>     - use `%2F` combination instead single `/` in case when need to pass URL prefix, for instance `https://<domain>`.
 
 [//]: # (> - use `Alba` gem for serialization)
 [//]: # (>   - potentially we can convert all keys to `lowerCamelCase` adding one command in base serializer)
