@@ -26,4 +26,6 @@ class Geolocation < ApplicationRecord
   validates :type, presence: true
   validates :latitude, latitude: true, presence: true
   validates :longitude, longitude: true, presence: true
+
+  scope :find_by_ip_or_url, ->(target) { where(ip: target).or(where(url: target)) }
 end

@@ -10,7 +10,7 @@ class API::V1::GeolocationsController < ApplicationController
   def show
     authorize resource
 
-    render json: {}
+    render json: resource
   end
 
   def create
@@ -22,10 +22,10 @@ class API::V1::GeolocationsController < ApplicationController
   def destroy
     authorize resource
 
-    render json: {}
+    render json: resource
   end
 
   private
 
-  def set_resource = @resource = Geolocation.find(params[:id])
+  def set_resource = @resource = Geolocation.find_by_ip_or_url(params[:target]).first!
 end
