@@ -1,9 +1,21 @@
 class ApplicationController < ActionController::API
+  include Pundit::Authorization
+
+  attr_reader :current_user, :resource
+
+  before_action :authenticate, except: :login
+
   rescue_from StandardError do |exception|
     handle_exception(exception)
   end
 
+  def login; end
+
   private
+
+  def authenticate
+    @current_user = User.last
+  end
 
   def handle_exception(exception)
     prepared_error = ErrorHandler.call(exception)

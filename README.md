@@ -72,11 +72,11 @@ Ruby API - Geolocation with external integration
 [//]: # (> - potentially rewrite that class to servie object)
 
 **6. Authentication and Authorization:**
+> - Implemented user authentication to ensure only authorized users can interact with Geospatial data.
+> - use `Pundit` gem to authorise users permissions.
 
-[//]: # (> - Implement user authentication to ensure only authorized users can book or modify appointments.)
 [//]: # (> - use `JWT` gem to authentication users)
 [//]: # (> - create simple `login` endpoint to authenticate current user by JWT)
-[//]: # (> - use `Pundit` gem to authorise users permissions)
 
 **7. Validation and Error Handling:**
 > - added default Rails validation on model layer via creating own validators.
@@ -114,3 +114,4 @@ Ruby API - Geolocation with external integration
 > - hide internal 500th errors and not send them in response body.
 >   - refactor base error class to work with errors array more natively.
 > - improve logging - use Rails approach or integrate any 3rd party service, aka Rollbar.
+> - implement different user policy scopes according to new roles data modeling, for instance.

@@ -37,6 +37,7 @@ gem 'bootsnap', require: false
 
 gem 'faraday'
 gem 'ipaddress', '~> 0.8.3'
+gem 'pundit'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
