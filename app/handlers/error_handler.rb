@@ -17,7 +17,7 @@ class ErrorHandler
       when Pundit::NotAuthorizedError
         Errors::Forbidden.new(error)
       else
-        # we can do not pass error message to response body if we don't want to show any internal errors in clients
+        # we can do not pass error message to response body if we don't want to show any internal errors in clients.
         Errors::InternalServerError.new(error)
       end
     end

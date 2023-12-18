@@ -20,7 +20,7 @@ class ApplicationController < ActionController::API
   def handle_exception(exception)
     prepared_error = ErrorHandler.call(exception)
 
-    # we can provide more details into logs for better troubleshooting
+    # we can provide more details into logs for better troubleshooting.
     Rails.logger.error("[ERROR] [#{prepared_error}] #{prepared_error.to_json_api}")
 
     render_error(prepared_error, prepared_error.status_code)

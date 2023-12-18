@@ -6,7 +6,7 @@ class GeolocationPolicy
     @record = record
   end
 
-  # here we are able to implement difficult logic that defines authorization permissions for each user
+  # here we are able to implement difficult logic that defines authorization permissions for each user.
   def index? = true
   def show? = index?
   def create? = index?
@@ -18,7 +18,7 @@ class GeolocationPolicy
       @scope = scope
     end
 
-    # here we are able to implement difficult logic that defines policy scope of records for each user
+    # here we are able to implement difficult logic that defines policy scope of records for each user.
     def resolve = scope.all
 
     private
