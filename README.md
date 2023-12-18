@@ -79,12 +79,12 @@ Ruby API - Geolocation with external integration
 
 **7. Validation and Error Handling:**
 > - added default Rails validation on model layer via creating own validators.
+> - implemented robust error handling to provide meaningful error messages through whole API.
+>   - it is possible not pass error message to response body if we don't want to show any internal errors in client side.
 
 [//]: # (> - add validation for incoming data to prevent invalid bookings or data corruption.)
 [//]: # (>   - use `Dry-validation` gem)
 [//]: # (>   - add addition DRY rules for cases when slots time data is not valid)
-[//]: # (> - implement robust error handling to provide meaningful error messages through whole API.)
-[//]: # (>   - we are able not pass error message to response body if we don't want to show any internal errors in clients)
 
 **8. Documentation:**
 
@@ -110,3 +110,6 @@ Ruby API - Geolocation with external integration
 > - use secrets to manage important environment variables.
 > - perhaps, create separate table to store `location` JSON data there and add one-to-one relation to `geolocation` table...
 > - add background job to fetch and store data about IP or URL not existing in DB in new `geolocation` record.
+> - hide internal 500th errors and not send them in response body.
+>   - refactor base error class to work with errors array more natively.
+> - improve logging - use Rails approach or integrate any 3rd party service, aka Rollbar.
