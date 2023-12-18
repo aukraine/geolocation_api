@@ -60,6 +60,7 @@ Ruby API - Geolocation with external integration
 > - ensured that the API follows RESTful principles (HTTP methods like GET, POST, PUT, DELETE, status codes, etc.).
 > - create couple of CRUD endpoints for ability to manage geolocations records.
 > - it's first version `V1` of API, so we added `/v1` into path and moved controllers into `V1` module according to the best practices of API design and implementation.
+> - used `:target` params as default instead `:id` on **show** and **destroy** endpoints.
 
 [//]: # (> - use `Alba` gem for serialization)
 [//]: # (>   - potentially we can convert all keys to `lowerCamelCase` adding one command in base serializer)
@@ -115,3 +116,4 @@ Ruby API - Geolocation with external integration
 >   - refactor base error class to work with errors array more natively.
 > - improve logging - use Rails approach or integrate any 3rd party service, aka Rollbar.
 > - implement different user policy scopes according to new roles data modeling, for instance.
+> - potentially implement ability to use other 3rd party service for receiving location data with managing whole URL addresses instead just domain part now.
