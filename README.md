@@ -87,7 +87,8 @@ Ruby API - Geolocation with external integration
 **7. Validation and Error Handling:**
 > - added default Rails validation on model layer via creating own validators.
 > - implemented robust error handling to provide meaningful error messages through whole API.
->   - it is possible not pass error message to response body if we don't want to show any internal errors in client side.
+>   - handled multi error cases according to JSON API specification, especially for contract and model validations when there might be several errors.
+>   - it is possible not pass error message to response body if we don't want to show any exactly internal errors in client side.
 > - added validation for incoming data to prevent processing requests with invalid payloads.
 >   - used `Dry-validation` gem and created a short contract.
 >   - added addition DRY rule to verify if one property contains any of both value formats.

@@ -32,7 +32,7 @@ class ApplicationController < ActionController::API
 
   def validate(contract_class = BaseContract, **options)
     contract = contract_class.new(**options).call(params.to_unsafe_h)
-    raise Errors::UnprocessableEntity.new(contract.errors.to_h) if contract.failure?
+    raise Errors::UnprocessableEntity.new(*contract_class.errors_to_a(contract)) if contract.failure?
 
     contract.to_h
   end

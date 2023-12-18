@@ -1,6 +1,6 @@
 class TargetContract < BaseContract
   params do
-    optional(:target).filled(:string)
+    required(:target).filled(:string)
   end
 
   rule(:target) do

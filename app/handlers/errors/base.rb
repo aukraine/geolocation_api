@@ -5,7 +5,7 @@ module Errors
     attr_reader :errors
 
     def initialize(*errors)
-      @errors = Array(errors.presence || self.class.new(simple_error)) # potentially good candidate to refactor
+      @errors = errors.presence || [simple_error]
     end
 
     def to_json_api
