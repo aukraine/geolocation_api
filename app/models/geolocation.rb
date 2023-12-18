@@ -28,4 +28,6 @@ class Geolocation < ApplicationRecord
   validates :longitude, longitude: true, presence: true
 
   scope :find_by_ip_or_url, ->(target) { where(ip: target).or(where(url: target)) }
+
+  def kind = self.class.name.underscore
 end

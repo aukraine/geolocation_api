@@ -66,10 +66,9 @@ Ruby API - Geolocation with external integration
 >   - note that integrated `IPstack` service works only with domain addresses in path, so ability to receive, validate and store whole URL addresses will be useful in the future,
 >     - use `%2F` combination instead single `/` in case when need to pass URL prefix, for instance `https://<domain>`.
 >   - need to dive deeper into ability to receive, validate and handle two separate properties in request payloads for `IP` and `URL` values instead one common `target` as is implemented now, TBD...
-
-[//]: # (> - use `Alba` gem for serialization)
-[//]: # (>   - potentially we can convert all keys to `lowerCamelCase` adding one command in base serializer)
-[//]: # (> - use JSON API standard for request payloads and response bodies)
+> - used `Alba` gem for serialization.
+>   - potentially we can convert all keys to `lowerCamelCase` adding one command in base serializer.
+> - used JSON API standard for request payloads and response bodies.
 
 **5. Integration with IPstack 3rd party service:**
 > - created simple class to call `IPstack` 3rd party service using `Faraday` gem.

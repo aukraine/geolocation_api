@@ -75,6 +75,7 @@ GEM
       minitest (>= 5.1)
       mutex_m
       tzinfo (~> 2.0)
+    alba (3.0.2)
     annotate (3.2.0)
       activerecord (>= 3.2, < 8.0)
       rake (>= 10.4, < 14.0)
@@ -182,6 +183,8 @@ GEM
       racc (~> 1.4)
     nokogiri (1.15.5-x86_64-linux)
       racc (~> 1.4)
+    oj (3.16.3)
+      bigdecimal (>= 3.0)
     pg (1.5.4)
     psych (5.1.1.1)
       stringio
@@ -268,6 +271,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  alba
   annotate
   bcrypt (~> 3.1.7)
   bootsnap
@@ -279,6 +283,7 @@ DEPENDENCIES
   faker
   faraday
   ipaddress (~> 0.8.3)
+  oj
   pg (~> 1.1)
   puma (>= 5.0)
   pundit
