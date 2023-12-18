@@ -65,6 +65,7 @@ Ruby API - Geolocation with external integration
 >   - moreover, allowed `target` value to contain IP addresses, domains and even URLs with prefixes via set up the constraints,
 >   - note that integrated `IPstack` service works only with domain addresses in path, so ability to receive, validate and store whole URL addresses will be useful in the future,
 >     - use `%2F` combination instead single `/` in case when need to pass URL prefix, for instance `https://<domain>`.
+>   - need to dive deeper into ability to receive, validate and handle two separate properties in request payloads for `IP` and `URL` values instead one common `target` as is implemented now, TBD...
 
 [//]: # (> - use `Alba` gem for serialization)
 [//]: # (>   - potentially we can convert all keys to `lowerCamelCase` adding one command in base serializer)
@@ -77,8 +78,8 @@ Ruby API - Geolocation with external integration
 [//]: # (> - potentially rewrite that class to servie object)
 
 **6. Authentication and Authorization:**
-> - Implemented user authentication to ensure only authorized users can interact with Geospatial data.
-> - use `Pundit` gem to authorise users permissions.
+> - implemented user authentication to ensure only authorized users can interact with Geospatial data.
+> - used `Pundit` gem to authorise users permissions.
 
 [//]: # (> - use `JWT` gem to authentication users)
 [//]: # (> - create simple `login` endpoint to authenticate current user by JWT)
@@ -87,10 +88,9 @@ Ruby API - Geolocation with external integration
 > - added default Rails validation on model layer via creating own validators.
 > - implemented robust error handling to provide meaningful error messages through whole API.
 >   - it is possible not pass error message to response body if we don't want to show any internal errors in client side.
-
-[//]: # (> - add validation for incoming data to prevent invalid bookings or data corruption.)
-[//]: # (>   - use `Dry-validation` gem)
-[//]: # (>   - add addition DRY rules for cases when slots time data is not valid)
+> - added validation for incoming data to prevent processing requests with invalid payloads.
+>   - used `Dry-validation` gem and created a short contract.
+>   - added addition DRY rule to verify if one property contains any of both value formats.
 
 **8. Documentation:**
 
@@ -111,13 +111,15 @@ Ruby API - Geolocation with external integration
 
 **11. Future Improvements:**
 > - **Logging**: Implement logging to track API requests and responses for debugging purposes.
+>   - use common Rails approach or integrate any 3rd party service, aka `Rollbar` or `CloudWatch`.
 > - **Rate Limiting**: Consider implementing rate limiting to prevent abuse.
 > - **Caching**: Implement caching for repeated requests to improve performance.
 > - use secrets to manage important environment variables.
 > - perhaps, create separate table to store `location` JSON data there and add one-to-one relation to `geolocation` table...
+> - instead using self-written regexp for URLs, discover any solution out of the box for better contract and model validations.
 > - add background job to fetch and store data about IP or URL not existing in DB in new `geolocation` record.
 > - hide internal 500th errors and not send them in response body.
->   - refactor base error class to work with errors array more natively.
-> - improve logging - use Rails approach or integrate any 3rd party service, aka Rollbar.
+>   - refactor base error class to work with the errors array more natively.
 > - implement different user policy scopes according to new roles data modeling, for instance.
 > - potentially implement ability to use other 3rd party service for receiving location data with managing whole URL addresses instead just domain part now.
+> - maybe at least in `V2` version of API it would be better to manage and process different properties in request payload for IP and URL values instead one common.

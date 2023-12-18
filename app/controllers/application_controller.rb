@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
   include Pundit::Authorization
 
-  attr_reader :current_user, :resource
+  attr_reader :current_user
 
   before_action :authenticate, except: :login
 
@@ -28,5 +28,12 @@ class ApplicationController < ActionController::API
 
   def render_error(error, status = nil)
     render json: error.to_json_api, status: status.presence || error.status_code
+  end
+
+  def validate(contract_class = BaseContract, **options)
+    contract = contract_class.new(**options).call(params.to_unsafe_h)
+    raise Errors::UnprocessableEntity.new(contract.errors.to_h) if contract.failure?
+
+    contract.to_h
   end
 end

@@ -1,6 +1,4 @@
 class API::V1::GeolocationsController < ApplicationController
-  before_action :set_resource, only: [:show, :destroy]
-
   def index
     authorize Geolocation
 
@@ -8,18 +6,23 @@ class API::V1::GeolocationsController < ApplicationController
   end
 
   def show
+    params = validate(TargetContract)
+    resource = set_resource(params[:target])
     authorize resource
 
-    render json: resource
+    render json: params
   end
 
   def create
     authorize Geolocation
+    params = validate(TargetContract)
 
-    render json: {}
+    render json: params
   end
 
   def destroy
+    params = validate(TargetContract)
+    resource = set_resource(params[:target])
     authorize resource
 
     render json: resource
@@ -27,5 +30,5 @@ class API::V1::GeolocationsController < ApplicationController
 
   private
 
-  def set_resource = @resource = Geolocation.find_by_ip_or_url(params[:target]).first!
+  def set_resource(target) = Geolocation.find_by_ip_or_url(target).first!
 end
