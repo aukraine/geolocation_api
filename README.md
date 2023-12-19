@@ -19,15 +19,25 @@ Ruby API - Geolocation with external integration
 
 ### How to interact with API via Postman
 
-[//]: # (**1. visit deployed app on next link**)
-[//]: # (> https://geospatial-app-rngt.onrender.com/)
+> - first of all, need to export included in the repo Postman collection [postman_collection.json](docs%2Fpostman_collection.json) into your **Postman** application
 
-[//]: # (**2. send request with new ticket data to the API server with JSON body that can be the same as in example**)
-[//]: # (> POST https://geospatial-app-rngt.onrender.com/api/v1/tickets)
+> - next you have to make a simple authentication, setting any persisted user's credentials via `POST /login` request with next JSON body schema `{"email": "<email>", "password": "<password>"}`.
+> - it allows to login, generate and received JWT token, use it automatically on other requests via internal Postman collection variable;
+>   - it is possible to create new user in **Rails** console:
+>     - `docker-compose exec api bin/rails c`
+>     - `FactoryBot.create(:user, email: '<user@mail.com>', password: '<password>')`
+>   - or use default user, already existing in DB after seeding:
+>     - JSON body `{"email": "user@mail.com", "password": "password"}`
 
-[//]: # (**3. open new ticket card on webb-app page to see all details and plotted polygons on the map**)
-[//]: # (> https://geospatial-app-rngt.onrender.com/tickets/1)
+> - now, feel free to use any of four request to manage geolocation records using next RESTfull endpoints using stored inside JWT token from previous step:
+>   - **create geolocation** `POST /api/v1/geolocations` a request to store new location data received from **IPstack** external service by provided from current user IP address or URL in JSON payload with next schema `{"target": "<ip_or_url>"}`;
+>   - **show geolocation** `GET /api/v1/geolocations/:target` a request to fetch data about geolocation by given IP or URL set in path string, implementation provides ability to work not only with IP and domain format, but even to set the whole URL with prefixes without supporting this on **IPstack** integration;
+>   - **delete geolocation** `DELETE /api/v1/geolocations/:target` a request to remove geolocation from DB using the same payload schema as in previous one;
+>   - **list geolocations** `GET /api/v1/geolocations` the last extra request to have ability showing reduced data about all records via simple index endpoint.
 
+> - here is a screen shot with all request in **Postman** application:
+    ![postman_collection.png](docs%2Fpostman_collection.png)
+> - last `* ipstack` request doesn't matter, it was technical one to help with integration in development.
 
 ## Steps of implementation and developer notes
 
@@ -91,6 +101,7 @@ Ruby API - Geolocation with external integration
 > - used `Pundit` gem to authorise users permissions.
 > - used `JWT` gem to authentication users.
 > - created simple `login` endpoint to authenticate current user by JWT.
+>   - in `Postman` collection implemented smart request based via **JS** pre-request script to **login** in API from outside, receive JWT token, store in PM variable and automatically use it in all other endpoints for providing ability to make all endpoints secure, not available to public.
 
 **7. Validation and Error Handling:**
 > - added default Rails validation on model layer via creating own validators.
@@ -102,11 +113,12 @@ Ruby API - Geolocation with external integration
 >   - added addition DRY rule to verify if one property contains any of both value formats.
 
 **8. Documentation:**
+> - included Postman collection [postman_collection.json](docs%2Fpostman_collection.json) into project for sharing with other team members.
+>   - see more about all API endpoints described in section **How to interact with API via Postman** above.
 
 [//]: # (> - created this README.md file that explains how to run and use the service.)
 [//]: # (> - added developer notes that were written during implementation)
-[//]: # (> - included Postman collection into project for sharing with other team members)
-[//]: # (>   - here is short description about all created endpoints)
+
 
 **9. Testing:**
 > - used `FactoryBot` gem and created factories for each model

@@ -1,0 +1,280 @@
+{
+  "collection": {
+    "info": {
+      "_postman_id": "e560a032-59d3-439b-9f31-dca814f2c9a6",
+      "name": "Geolocation API",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+      "updatedAt": "2023-12-19T13:32:07.000Z",
+      "uid": "6696321-e560a032-59d3-439b-9f31-dca814f2c9a6"
+    },
+    "item": [
+      {
+        "name": "login",
+        "event": [
+          {
+            "listen": "prerequest",
+            "script": {
+              "id": "8a20bc70-5c17-4c02-8c96-da8db77fd589",
+              "exec": [
+                "const echoPostRequest = {",
+                "    url: \"http://127.0.0.1:3000/login\",",
+                "    method: 'POST',",
+                "    header: { 'content-type': 'application/json' },",
+                "    body: {",
+                "        mode: 'raw',",
+                "        raw: {",
+                "            \"email\": \"user@mail.com\",",
+                "            \"password\": \"password\"",
+                "        }",
+                "    }",
+                "};",
+                "pm.sendRequest(echoPostRequest, function (err, response) {",
+                "    pm.collectionVariables.set('JWT', response.json().auth_token);",
+                "});"
+              ],
+              "type": "text/javascript"
+            }
+          }
+        ],
+        "id": "842d2767-0f89-4199-8528-abc0cbbce37b",
+        "protocolProfileBehavior": {
+          "disableBodyPruning": true
+        },
+        "request": {
+          "method": "POST",
+          "header": [],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n    \"email\": \"user@mail.com\",\n    \"password\": \"password\"\n}",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          },
+          "url": {
+            "raw": "http://127.0.0.1:3000/login",
+            "protocol": "http",
+            "host": [
+              "127",
+              "0",
+              "0",
+              "1"
+            ],
+            "port": "3000",
+            "path": [
+              "login"
+            ]
+          }
+        },
+        "response": [],
+        "uid": "6696321-842d2767-0f89-4199-8528-abc0cbbce37b"
+      },
+      {
+        "name": "create geolocation",
+        "id": "9caf3084-fc73-44d6-8392-3ff544b25a9c",
+        "protocolProfileBehavior": {
+          "disableBodyPruning": true
+        },
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Authorization",
+              "value": "Bearer {{JWT}}",
+              "type": "text"
+            }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n    \"target\": \"{{target}}\"\n}",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          },
+          "url": {
+            "raw": "localhost:3000/api/v1/geolocations",
+            "host": [
+              "localhost"
+            ],
+            "port": "3000",
+            "path": [
+              "api",
+              "v1",
+              "geolocations"
+            ]
+          }
+        },
+        "response": [],
+        "uid": "6696321-9caf3084-fc73-44d6-8392-3ff544b25a9c"
+      },
+      {
+        "name": "list geolocations",
+        "id": "85af4cc4-27ec-45d9-b763-493a841d59c4",
+        "protocolProfileBehavior": {
+          "disableBodyPruning": true
+        },
+        "request": {
+          "method": "GET",
+          "header": [
+            {
+              "key": "Authorization",
+              "value": "Bearer {{JWT}}",
+              "type": "text"
+            }
+          ],
+          "url": {
+            "raw": "localhost:3000/api/v1/geolocations",
+            "host": [
+              "localhost"
+            ],
+            "port": "3000",
+            "path": [
+              "api",
+              "v1",
+              "geolocations"
+            ]
+          }
+        },
+        "response": [],
+        "uid": "6696321-85af4cc4-27ec-45d9-b763-493a841d59c4"
+      },
+      {
+        "name": "show geolocation",
+        "id": "88a93cbe-39b2-4b9f-8dfc-2429b90c47c8",
+        "protocolProfileBehavior": {
+          "disableBodyPruning": true
+        },
+        "request": {
+          "method": "GET",
+          "header": [
+            {
+              "key": "Authorization",
+              "value": "Bearer {{JWT}}",
+              "type": "text"
+            }
+          ],
+          "url": {
+            "raw": "localhost:3000/api/v1/geolocations/{{target}}",
+            "host": [
+              "localhost"
+            ],
+            "port": "3000",
+            "path": [
+              "api",
+              "v1",
+              "geolocations",
+              "{{target}}"
+            ]
+          }
+        },
+        "response": [],
+        "uid": "6696321-88a93cbe-39b2-4b9f-8dfc-2429b90c47c8"
+      },
+      {
+        "name": "delete geolocation",
+        "id": "c204dfd3-83ad-4bdb-8171-52688e913c6d",
+        "protocolProfileBehavior": {
+          "disableBodyPruning": true
+        },
+        "request": {
+          "method": "DELETE",
+          "header": [
+            {
+              "key": "Authorization",
+              "value": "Bearer {{JWT}}",
+              "type": "text"
+            }
+          ],
+          "url": {
+            "raw": "localhost:3000/api/v1/geolocations/{{target}}",
+            "host": [
+              "localhost"
+            ],
+            "port": "3000",
+            "path": [
+              "api",
+              "v1",
+              "geolocations",
+              "{{target}}"
+            ]
+          }
+        },
+        "response": [],
+        "uid": "6696321-c204dfd3-83ad-4bdb-8171-52688e913c6d"
+      },
+      {
+        "name": "* ipstack",
+        "id": "4a700144-43c2-4b7c-9505-d9b4b6ee2316",
+        "protocolProfileBehavior": {
+          "tlsPreferServerCiphers": false,
+          "disableCookies": false,
+          "disableBodyPruning": true
+        },
+        "request": {
+          "method": "POST",
+          "header": [],
+          "url": {
+            "raw": "http://api.ipstack.com/google.com?access_key=f91088e11ab0cef7179d7d02c63a63aa&output=json",
+            "protocol": "http",
+            "host": [
+              "api",
+              "ipstack",
+              "com"
+            ],
+            "path": [
+              "google.com"
+            ],
+            "query": [
+              {
+                "key": "access_key",
+                "value": "f91088e11ab0cef7179d7d02c63a63aa"
+              },
+              {
+                "key": "output",
+                "value": "json"
+              }
+            ]
+          },
+          "description": "Endpoint to receive geolocation data from IPstack 3rd party resource"
+        },
+        "response": [],
+        "uid": "6696321-4a700144-43c2-4b7c-9505-d9b4b6ee2316"
+      }
+    ],
+    "event": [
+      {
+        "listen": "prerequest",
+        "script": {
+          "id": "bd5c4848-6cb4-40dc-bf92-b0064be7e133",
+          "type": "text/javascript",
+          "exec": [
+            ""
+          ]
+        }
+      },
+      {
+        "listen": "test",
+        "script": {
+          "id": "493168e4-d390-48af-a571-32193122fc45",
+          "type": "text/javascript",
+          "exec": [
+            ""
+          ]
+        }
+      }
+    ],
+    "variable": [
+      {
+        "key": "target",
+        "value": "1.1.1.1"
+      },
+      {
+        "key": "JWT",
+        "value": ""
+      }
+    ]
+  }
+}
