@@ -16,6 +16,10 @@ class ErrorHandler
         Errors::BadRequest.new(error)
       when Pundit::NotAuthorizedError
         Errors::Forbidden.new(error)
+      when Faraday::Error
+        Errors::BadGateway.new(error)
+      when JSON::ParserError
+        Errors::MisdirectedRequest.new(error)
       else
         # we can do not pass error message to response body if we don't want to show any internal errors in clients.
         Errors::InternalServerError.new(error)
