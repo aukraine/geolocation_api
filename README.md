@@ -130,3 +130,4 @@ Ruby API - Geolocation with external integration
 > - implement different user policy scopes according to new roles data modeling, for instance.
 > - potentially implement ability to use other 3rd party service for receiving location data with managing whole URL addresses instead just domain part now.
 > - maybe at least in `V2` version of API it would be better to manage and process different properties in request payload for IP and URL values instead one common.
+> - add on `index` page at least **pagination** to avoid too long responses if there are a lot of records in DB.
