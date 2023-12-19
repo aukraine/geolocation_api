@@ -28,6 +28,9 @@ Ruby API - Geolocation with external integration
 >     - `FactoryBot.create(:user, email: '<user@mail.com>', password: '<password>')`
 >   - or use default user, already existing in DB after seeding:
 >     - JSON body `{"email": "user@mail.com", "password": "password"}`
+> - in case automated setting of **JWT** doesn't work, you should set it  manually into each request in Postman:
+>   - copy **JWT** token value received in response body from `GET /login` endpoint on `auth_token` key;
+>   - paste it as new **Header** into every single request using next template `Authorization: 'Bearer <JWT_token>'`.
 
 > - now, feel free to use any of four requests to manage geolocation records using next RESTfull endpoints using stored inside JWT token from previous step:
 >   - **create geolocation** `POST /api/v1/geolocations` a request to store new location data received from **IPstack** external service by provided from current user IP address or URL in JSON payload with next schema `{"target": "<ip_or_url>"}`;
