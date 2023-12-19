@@ -14,6 +14,7 @@ gem 'alba'
 gem 'oj'
 gem 'pundit'
 gem 'dry-validation'
+gem 'rswag'
 
 group :development, :test do
   gem 'debug', platforms: %i[ mri mswin mswin64 mingw x64_mingw ]

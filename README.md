@@ -78,7 +78,8 @@ Ruby API - Geolocation with external integration
 >   - need to dive deeper into ability to receive, validate and handle two separate properties in request payloads for `IP` and `URL` values instead one common `target` as is implemented now, TBD...
 > - used `Alba` gem for serialization.
 >   - potentially we can convert all keys to `lowerCamelCase` adding one command in base serializer.
-> - used JSON API standard for request payloads and response bodies.
+> - used `JSON API` standard for request payloads and response bodies.
+> - used `Swagger` framework to test and create automatic-generated documentation.
 
 **5. Integration with IPstack 3rd party service:**
 > - created simple class to call `IPstack` 3rd party service using `Faraday` gem.
