@@ -50,6 +50,6 @@ class StoreGeolocation < BaseService
 
   def store_geolocation
     @geolocation = Geolocation.new(url: url, **geo_data)
-    raise Errors::BadRequest.new(*record.errors.to_a) unless geolocation.save
+    raise Errors::BadRequest.new(*geolocation.errors.to_a) unless geolocation.save
   end
 end

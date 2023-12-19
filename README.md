@@ -102,11 +102,14 @@ Ruby API - Geolocation with external integration
 [//]: # (>   - here is short description about all created endpoints)
 
 **9. Testing:**
-> - wrote couple **model** unit tests to ensure the reliability of the code.
 > - used `FactoryBot` gem and created factories for each model
-> - added **validators** own specs.
-> - created **error handler** and **error objects** unit tests.
-> - added **contract** own specs.
+> - wrote couple unit tests to ensure the reliability of the code.
+>   - created **models** specs.
+>   - added **validators** own specs.
+>   - created **error handler** and **error objects** unit tests.
+>   - added **contract** own specs.
+>   - created specs for `IPstack` lib classes.
+>   - added **service object** specs.
 
 [//]: # (> - cover all endpoint with own integration test using Swagger framework and generate very useful and helpful documentation)
 [//]: # (>   - visit `<server>/api-docs` you can see automatically generated API documentation like on screenshot above)
