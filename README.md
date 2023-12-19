@@ -41,9 +41,12 @@ Ruby API - Geolocation with external integration
 >   - string `type` attribute;
 >   - float `latitude` and `longitude` attributes;
 >   - jsonb `location` attribute with all additional data received from 3rd party service.
+> - `url` attribute will have a role like a caching layer to avoid redundant heavy call to external service in case if we already know which IP address is related.
 > - perhaps, create separate related table to store `location` JSON data there, TBD...
 > - created two **indexes** for `ip` and `url` (for second one only for cases when value is present) columns for faster searching.
 > - created uniqueness index for `ip` column to avoid duplicated records in DB.
+>   - stored only uniq records by IP or URL value.
+>   - managed cases when there is already record with given IP but with empty URL value.
 > - added default Rails validation on model layer via creating own validators.
 > - implemented `find_by_ip_or_url` scope to search by target value in both attributes via one query.
 > - created simple `User` model to be able use and show `Pundit` authorization.
@@ -52,13 +55,8 @@ Ruby API - Geolocation with external integration
 >   - service objects represent a single system action such as adding a record to the database or sending an email.
 >   - service objects should contain no reference to anything related to HTTP, such as requests or parameters.
 
-[//]: # (> - implement main model for storing geospatial data using `postgis` gem)
-[//]: # (> - design and use `Service Object` to encapsulate and manage business logic in separate abstraction)
-[//]: # (>   - service objects represent a single system action such as adding a record to the database or sending an email)
-[//]: # (>   - service objects should contain no reference to anything related to HTTP, such as requests or parameters)
-[//]: # (> - implement `Query Object` on `show_open_slots` endpoint to handle complicated querying of records collection on index endpoint with extend filtering params and potentially ordering ones)
-[//]: # (> - final DB schema with relations is next &#40;see screenshot below&#41;)
-[//]: # (> - seed DB with default data)
+[//]: # (> - final DB schema with relations is next &#40;see screenshot below&#41;.)
+[//]: # (> - seed DB with default data.)
 
 **4. API Endpoints:**
 
@@ -122,6 +120,7 @@ Ruby API - Geolocation with external integration
 >   - use common Rails approach or integrate any 3rd party service, aka `Rollbar` or `CloudWatch`.
 > - **Rate Limiting**: Consider implementing rate limiting to prevent abuse.
 > - **Caching**: Implement caching for repeated requests to improve performance.
+> - **Notifying**: Consider integrate emailing outside app to better notification of different events.
 > - use secrets to manage important environment variables.
 > - perhaps, create separate table to store `location` JSON data there and add one-to-one relation to `geolocation` table...
 > - instead using self-written regexp for URLs, discover any solution out of the box for better contract and model validations.
