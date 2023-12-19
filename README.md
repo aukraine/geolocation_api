@@ -110,10 +110,11 @@ Ruby API - Geolocation with external integration
 >   - added **contract** own specs.
 >   - created specs for `IPstack` lib classes.
 >   - added **service object** specs.
+> - use `simplecov` gem to check amount of covered code with tests.
 
 [//]: # (> - cover all endpoint with own integration test using Swagger framework and generate very useful and helpful documentation)
 [//]: # (>   - visit `<server>/api-docs` you can see automatically generated API documentation like on screenshot above)
-[//]: # (> - use `simplecov` gem to check amount of covered code with tests)
+[//]: # (>   - add screenshot about test coverage into documantation)
 
 **10. Deployment:**
 > - built API application inside of docker container and use `Docker Compose` tool manage it with DB in separate one.
