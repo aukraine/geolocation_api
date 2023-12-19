@@ -20,8 +20,9 @@ class API::V1::GeolocationsController < ApplicationController
     authorize Geolocation
     params = validate(TargetContract)
     resource = handle_service(StoreGeolocation, _user: current_user, **params)
+    serialized = GeolocationResource.new(resource).serialize
 
-    render json: resource, status: :created
+    render json: serialized, status: :created
   end
 
   def destroy

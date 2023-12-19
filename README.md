@@ -29,7 +29,7 @@ Ruby API - Geolocation with external integration
 >   - or use default user, already existing in DB after seeding:
 >     - JSON body `{"email": "user@mail.com", "password": "password"}`
 
-> - now, feel free to use any of four request to manage geolocation records using next RESTfull endpoints using stored inside JWT token from previous step:
+> - now, feel free to use any of four requests to manage geolocation records using next RESTfull endpoints using stored inside JWT token from previous step:
 >   - **create geolocation** `POST /api/v1/geolocations` a request to store new location data received from **IPstack** external service by provided from current user IP address or URL in JSON payload with next schema `{"target": "<ip_or_url>"}`;
 >   - **show geolocation** `GET /api/v1/geolocations/:target` a request to fetch data about geolocation by given IP or URL set in path string, implementation provides ability to work not only with IP and domain format, but even to set the whole URL with prefixes without supporting this on **IPstack** integration;
 >   - **delete geolocation** `DELETE /api/v1/geolocations/:target` a request to remove geolocation from DB using the same payload schema as in previous one;
