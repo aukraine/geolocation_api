@@ -89,9 +89,8 @@ Ruby API - Geolocation with external integration
 **6. Authentication and Authorization:**
 > - implemented user authentication to ensure only authorized users can interact with Geospatial data.
 > - used `Pundit` gem to authorise users permissions.
-
-[//]: # (> - use `JWT` gem to authentication users)
-[//]: # (> - create simple `login` endpoint to authenticate current user by JWT)
+> - used `JWT` gem to authentication users.
+> - created simple `login` endpoint to authenticate current user by JWT.
 
 **7. Validation and Error Handling:**
 > - added default Rails validation on model layer via creating own validators.
