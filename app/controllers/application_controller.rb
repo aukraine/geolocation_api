@@ -36,4 +36,11 @@ class ApplicationController < ActionController::API
 
     contract.to_h
   end
+
+  def handle_service(service_class = BaseService, **params)
+    service = service_class.new(**params).call
+    raise service[:error] unless service[:success]
+
+    service[:value]
+  end
 end

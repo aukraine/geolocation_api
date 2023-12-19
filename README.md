@@ -47,6 +47,10 @@ Ruby API - Geolocation with external integration
 > - added default Rails validation on model layer via creating own validators.
 > - implemented `find_by_ip_or_url` scope to search by target value in both attributes via one query.
 > - created simple `User` model to be able use and show `Pundit` authorization.
+> - ~~implement main model for storing geospatial data using `postgis` gem.~~
+> - design and use `Service Object` to encapsulate and manage business logic in separate abstraction.
+>   - service objects represent a single system action such as adding a record to the database or sending an email.
+>   - service objects should contain no reference to anything related to HTTP, such as requests or parameters.
 
 [//]: # (> - implement main model for storing geospatial data using `postgis` gem)
 [//]: # (> - design and use `Service Object` to encapsulate and manage business logic in separate abstraction)
