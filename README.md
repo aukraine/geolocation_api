@@ -73,9 +73,8 @@ Ruby API - Geolocation with external integration
 
 **5. Integration with IPstack 3rd party service:**
 > - created simple class to call `IPstack` 3rd party service using `Faraday` gem.
-
-[//]: # (> - create separate service to handle errors and transfor response)
-[//]: # (> - potentially rewrite that class to servie object)
+> - created separate class to handle errors and transform response.
+> - implemented these classes as agnostic abstraction and used inside of only one service object for better potential replacing with another integration.
 
 **6. Authentication and Authorization:**
 > - implemented user authentication to ensure only authorized users can interact with Geospatial data.
