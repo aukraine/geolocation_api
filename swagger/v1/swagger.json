@@ -1,0 +1,204 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Geolocation API V1",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/v1/geolocations": {
+      "get": {
+        "summary": "gets geolocations",
+        "tags": [
+          "Geolocations"
+        ],
+        "description": "Returns list of all geolocations",
+        "responses": {
+          "200": {
+            "description": "geolocations list"
+          },
+          "401": {
+            "description": "unauthorized request"
+          },
+          "403": {
+            "description": "forbidden action"
+          },
+          "404": {
+            "description": "not found"
+          }
+        }
+      },
+      "post": {
+        "summary": "creates geolocation",
+        "tags": [
+          "Geolocations"
+        ],
+        "description": "Creates new geolocations data received from external service by given IP or URL",
+        "parameters": [
+
+        ],
+        "responses": {
+          "201": {
+            "description": "geolocation created"
+          },
+          "400": {
+            "description": "bad request"
+          },
+          "401": {
+            "description": "unauthorized request"
+          },
+          "403": {
+            "description": "forbidden action"
+          },
+          "404": {
+            "description": "not found"
+          },
+          "421": {
+            "description": "misdirected request"
+          },
+          "422": {
+            "description": "unprocessable params"
+          },
+          "500": {
+            "description": "internal error"
+          },
+          "502": {
+            "description": "bad gateway"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "target": {
+                    "type": "string",
+                    "format": "ip"
+                  }
+                },
+                "required": [
+                  "target"
+                ]
+              }
+            }
+          },
+          "required": true,
+          "description": "A payload JSON body used to used IP or URL value to search on external service"
+        }
+      }
+    },
+    "/api/v1/geolocations/{target}": {
+      "parameters": [
+        {
+          "name": "target",
+          "in": "path",
+          "schema": {
+            "type": "string",
+            "format": "ip"
+          },
+          "required": true,
+          "description": "A parameter used to search by IP or URL value"
+        }
+      ],
+      "get": {
+        "summary": "gets geolocation",
+        "tags": [
+          "Geolocations"
+        ],
+        "description": "Returns geolocation by given IP or URL",
+        "responses": {
+          "200": {
+            "description": "geolocation resource"
+          },
+          "401": {
+            "description": "unauthorized request"
+          },
+          "403": {
+            "description": "forbidden action"
+          },
+          "404": {
+            "description": "not found"
+          },
+          "422": {
+            "description": "unprocessable params"
+          }
+        }
+      },
+      "delete": {
+        "summary": "deletes geolocation",
+        "tags": [
+          "Geolocations"
+        ],
+        "description": "Deletes geolocation by given IP or URL",
+        "responses": {
+          "200": {
+            "description": "geolocation deleted"
+          },
+          "401": {
+            "description": "unauthorized request"
+          },
+          "403": {
+            "description": "forbidden action"
+          },
+          "404": {
+            "description": "not found"
+          },
+          "422": {
+            "description": "unprocessable params"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "summary": "authenticates user",
+        "tags": [
+          "Auth"
+        ],
+        "description": "Authenticates current user",
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": "authenticated"
+          },
+          "401": {
+            "description": "unauthorized request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "email",
+                  "password"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://{defaultHost}",
+      "variables": {
+        "defaultHost": {
+          "default": "http://0.0.0.0:3000"
+        }
+      }
+    }
+  ]
+}

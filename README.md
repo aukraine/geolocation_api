@@ -90,6 +90,8 @@ Ruby API - Geolocation with external integration
 >   - potentially we can convert all keys to `lowerCamelCase` adding one command in base serializer.
 > - used `JSON API` standard for request payloads and response bodies.
 > - used `Swagger` framework to test and create automatic-generated documentation.
+>   - attached screenshot of **Swagger** page and the link to interactive documentation.
+>   - ![swagger.png](docs%2Fswagger.png)
 
 **5. Integration with IPstack 3rd party service:**
 > - created simple class to call `IPstack` 3rd party service using `Faraday` gem.
@@ -129,13 +131,11 @@ Ruby API - Geolocation with external integration
 >   - added **contract** own specs.
 >   - created specs for `IPstack` lib classes.
 >   - added **service object** specs.
+> - cover all happy and unhappy cases on all endpoints with own integration test using Swagger framework and generate very useful and helpful documentation.
+>   - visit `<server>/api-docs` you can see automatically generated API documentation like on screenshot above.
 > - used `simplecov` gem to check amount of covered code with tests.
 >   - added screenshot about test coverage into documentation, current covarage is more than **98%**.
 >   - ![coverage.png](docs%2Fcoverage.png)
-
-[//]: # (> - cover all endpoint with own integration test using Swagger framework and generate very useful and helpful documentation)
-[//]: # (>   - visit `<server>/api-docs` you can see automatically generated API documentation like on screenshot above)
-[//]: # (>   - add screenshot about test coverage into documantation)
 
 **10. Deployment:**
 > - built API application inside of docker container and use `Docker Compose` tool manage it with DB in separate one.

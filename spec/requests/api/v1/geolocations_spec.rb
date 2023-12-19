@@ -8,7 +8,7 @@ RSpec.describe 'Geolocation API', type: :request, swagger_doc: 'v1/swagger.json'
 
   path '/api/v1/geolocations' do
     get 'gets geolocations' do
-      tags 'Geolocation'
+      tags 'Geolocations'
       description 'Returns list of all geolocations'
       produces 'application/json'
 
