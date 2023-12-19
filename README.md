@@ -39,7 +39,8 @@ Ruby API - Geolocation with external integration
     ![postman_collection.png](docs%2Fpostman_collection.png)
 > - last `* ipstack` request doesn't matter, it was technical one to help with integration in development.
 
-## Steps of implementation and developer notes
+
+## Steps of implementation and developer's notes
 
 **1. Understand the Requirements:**
 > - carefully read and understood the problem definition.
@@ -67,19 +68,19 @@ Ruby API - Geolocation with external integration
 > - implemented `find_by_ip_or_url` scope to search by target value in both attributes via one query.
 > - created simple `User` model to be able use and show `Pundit` authorization.
 > - ~~implement main model for storing geospatial data using `postgis` gem.~~
-> - design and use `Service Object` to encapsulate and manage business logic in separate abstraction.
+> - designed and use `Service Object` to encapsulate and manage business logic in separate abstraction.
 >   - service objects represent a single system action such as adding a record to the database or sending an email.
 >   - service objects should contain no reference to anything related to HTTP, such as requests or parameters.
 > - seeded DB with default data.
 > - created complex `db:rebuild` rake task to run all DB related commands per one time.
-
-[//]: # (> - final DB schema with relations is next &#40;see screenshot below&#41;.)
+> - final DB schema is next (see screenshot below):
+>   - ![database.png](docs%2Fdatabase.png)
 
 **4. API Endpoints:**
 
 > - defined the API endpoints based on the requirements.
 > - ensured that the API follows RESTful principles (HTTP methods like GET, POST, PUT, DELETE, status codes, etc.).
-> - create couple of CRUD endpoints for ability to manage geolocations records.
+> - created couple of CRUD endpoints for ability to manage geolocations records.
 > - it's first version `V1` of API, so we added `/v1` into path and moved controllers into `V1` module according to the best practices of API design and implementation.
 > - used `:target` params as default instead `:id` on **show** and **destroy** endpoints.
 >   - moreover, allowed `target` value to contain IP addresses, domains and even URLs with prefixes via set up the constraints,
@@ -115,12 +116,10 @@ Ruby API - Geolocation with external integration
 >   - added addition DRY rule to verify if one property contains any of both value formats.
 
 **8. Documentation:**
+> - created this README.md file that explains how to run and use the service.
+> - added developer notes that were written during implementation.
 > - included Postman collection [postman_collection.json](docs%2Fpostman_collection.json) into project for sharing with other team members.
 >   - see more about all API endpoints described in section **How to interact with API via Postman** above.
-
-[//]: # (> - created this README.md file that explains how to run and use the service.)
-[//]: # (> - added developer notes that were written during implementation)
-
 
 **9. Testing:**
 > - used `FactoryBot` gem and created factories for each model
@@ -138,7 +137,9 @@ Ruby API - Geolocation with external integration
 >   - ![coverage.png](docs%2Fcoverage.png)
 
 **10. Deployment:**
-> - built API application inside of docker container and use `Docker Compose` tool manage it with DB in separate one.
+> - built API application inside of docker container.
+> - used `Docker Compose` tool to manage API container with DB in separate one.
+> - created one common `db:rebuild` rake task for ability to create and migrate DB on the begging of set upping API on current environment or reseed DB any time in easy way.
 
 **11. Future Improvements:**
 > - **Logging**: Implement logging to track API requests and responses for debugging purposes.
@@ -149,10 +150,13 @@ Ruby API - Geolocation with external integration
 > - use secrets to manage important environment variables.
 > - perhaps, create separate table to store `location` JSON data there and add one-to-one relation to `geolocation` table...
 > - instead using self-written regexp for URLs, discover any solution out of the box for better contract and model validations.
+> - consider ability to return list of records on searching by **URL** due to potentially possibility to have several records in DB with different IPs but related to the same domain.
 > - add background job to fetch and store data about IP or URL not existing in DB in new `geolocation` record.
 > - hide internal 500th errors and not send them in response body.
 >   - refactor base error class to work with the errors array more natively.
 > - implement different user policy scopes according to new roles data modeling, for instance.
 > - potentially implement ability to use other 3rd party service for receiving location data with managing whole URL addresses instead just domain part now.
 > - maybe at least in `V2` version of API it would be better to manage and process different properties in request payload for IP and URL values instead one common.
+> - extent Swagger documentation with examples of request payloads and request bodies schemas foe every single endpoint.
 > - add on `index` page at least **pagination** to avoid too long responses if there are a lot of records in DB.
+> - consider `postgis` library to improve managing of geospatial data.
