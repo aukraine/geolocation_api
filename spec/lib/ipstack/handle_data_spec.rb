@@ -1,5 +1,5 @@
 RSpec.describe Ipstack::HandleData, type: :lib do
-  subject { described_class.new(instance_double('input', body: input.to_json)) }
+  subject { described_class.new(instance_double('input', body: input.to_json, success?: success)) }
 
   let(:input) do
     {
@@ -33,6 +33,8 @@ RSpec.describe Ipstack::HandleData, type: :lib do
       }
     }
   end
+
+  let(:success) { true }
 
   describe '#transform' do
     let(:output) do
@@ -96,6 +98,29 @@ RSpec.describe Ipstack::HandleData, type: :lib do
       it 'raises expected error' do
         expect { subject.transform }.to raise_exception(Errors::MisdirectedRequest) do |exception|
           expect(exception.errors).to include(error_message)
+        end
+      end
+
+      context 'when response from external service is not success' do
+        let(:success) { false }
+
+        let(:error_message) { 'Not success response from external service' }
+
+        it 'raises expected error' do
+          expect { subject.transform }.to raise_exception(Errors::MisdirectedRequest) do |exception|
+            expect(exception.errors).to include(error_message)
+          end
+        end
+      end
+
+      context 'when input is edge case format' do
+        let(:input) { { detail: 'Not Found' } }
+        let(:error_message) { 'External service could not process URL with any prefixes' }
+
+        it 'raises expected error' do
+          expect { subject.transform }.to raise_exception(Errors::MisdirectedRequest) do |exception|
+            expect(exception.errors).to include(error_message)
+          end
         end
       end
     end
