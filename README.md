@@ -7,8 +7,14 @@ Ruby API - Geolocation with external integration
 **1. build image**
 > docker-compose build
 
-**2. run image**
+**2. create, migrate and seed DB**
+> docker-compose exec api bin/rails db:rebuild
+
+**3. run image**
 > docker-compose up
+
+**4. run tests (optional)**
+> docker-compose exec api rspec spec
 
 
 ### How to interact with API via Postman
@@ -54,9 +60,10 @@ Ruby API - Geolocation with external integration
 > - design and use `Service Object` to encapsulate and manage business logic in separate abstraction.
 >   - service objects represent a single system action such as adding a record to the database or sending an email.
 >   - service objects should contain no reference to anything related to HTTP, such as requests or parameters.
+> - seeded DB with default data.
+> - created complex `db:rebuild` rake task to run all DB related commands per one time.
 
 [//]: # (> - final DB schema with relations is next &#40;see screenshot below&#41;.)
-[//]: # (> - seed DB with default data.)
 
 **4. API Endpoints:**
 
