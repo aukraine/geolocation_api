@@ -42,7 +42,8 @@ Ruby API - Geolocation with external integration
 >   - float `latitude` and `longitude` attributes;
 >   - jsonb `location` attribute with all additional data received from 3rd party service.
 > - perhaps, create separate related table to store `location` JSON data there, TBD...
-> - created two **indexes** for `ip` and `url` (for second one only for cases when value is present) columns.
+> - created two **indexes** for `ip` and `url` (for second one only for cases when value is present) columns for faster searching.
+> - created uniqueness index for `ip` column to avoid duplicated records in DB.
 > - added default Rails validation on model layer via creating own validators.
 > - implemented `find_by_ip_or_url` scope to search by target value in both attributes via one query.
 > - created simple `User` model to be able use and show `Pundit` authorization.

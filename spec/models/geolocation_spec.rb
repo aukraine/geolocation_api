@@ -14,7 +14,7 @@
 #
 # Indexes
 #
-#  index_geolocations_on_ip   (ip)
+#  index_geolocations_on_ip   (ip) UNIQUE
 #  index_geolocations_on_url  (url) WHERE (url IS NOT NULL)
 #
 require 'rails_helper'

@@ -5,7 +5,7 @@
 #  id         :bigint           not null, primary key
 #  ip         :string           not null
 #  latitude   :float            not null
-#  location   :jsonb            not null
+#  location   :jsonb            not null, default({})
 #  longitude  :float            not null
 #  type       :string           not null
 #  url        :string
@@ -14,7 +14,7 @@
 #
 # Indexes
 #
-#  index_geolocations_on_ip   (ip)
+#  index_geolocations_on_ip   (ip) UNIQUE
 #  index_geolocations_on_url  (url) WHERE (url IS NOT NULL)
 #
 

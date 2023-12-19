@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_18_015226) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_19_004744) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,7 +23,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_18_015226) do
     t.jsonb "location", default: {}, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["ip"], name: "index_geolocations_on_ip"
+    t.index ["ip"], name: "index_geolocations_on_ip", unique: true
     t.index ["url"], name: "index_geolocations_on_url", where: "(url IS NOT NULL)"
   end
 
